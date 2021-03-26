@@ -1,6 +1,6 @@
 {
   "totalProfit": 1000000,
-  "currentMonth": "2021-05",
+  "currentMonth": "2021-05-26",
   "fuelSchedule": [
     { "month": "2021-03", "fuelVolume": 5000 },
     { "month": "2021-04", "fuelVolume": 6000 },
@@ -10,7 +10,7 @@
   "gasStationsCount": 5,
   "gasStations": [
     {
-      "id": 1,
+      "id": "8bb48fa",
       "fuelRemained": 100,
       "workplaces": 5,
       "workers": [
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "0d76852",
       "fuelRemained": 200,
       "workplaces": 7,
       "workers": [

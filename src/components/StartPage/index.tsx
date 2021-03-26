@@ -32,19 +32,22 @@ const StartPage = () => {
 
     const pushParams = async () => {
       try {
-        // const response = await fetch('/api/state/init', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(formData),
-        // });
+        const response = await fetch(
+          `http://${process.env.REACT_APP_NGROK_URL}/api/state/init`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          }
+        );
 
-        // if (response.ok) {
-        window.location.replace('/model');
-        // }
+        if (response.ok) {
+          window.location.replace('/model');
+        }
       } catch (err) {
-        console.log(err.response.data.error);
+        console.log(err);
       }
     };
 
@@ -61,479 +64,489 @@ const StartPage = () => {
             className="form start-page__form"
             onSubmit={(e) => onFormSubmit(e)}
           >
-            <label
-              className={
-                formData.azsRest
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                id="azsRest"
-                value={formData.azsRest}
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+            <div className="form__content">
+              <label
+                className={
+                  formData.azsRest
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Остаток топлива на АЗС</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  id="azsRest"
+                  value={formData.azsRest}
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Остаток топлива на АЗС</p>
+              </label>
 
-            <label
-              className={
-                formData.storeRest
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.storeRest}
-                id="storeRest"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.storeRest
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Остаток топлива в хранилище</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.storeRest}
+                  id="storeRest"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Остаток топлива в хранилище</p>
+              </label>
 
-            <label
-              className={
-                formData.azsCount
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.azsCount}
-                id="azsCount"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.azsCount
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Количество АЗС</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.azsCount}
+                  id="azsCount"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Количество АЗС</p>
+              </label>
 
-            <label
-              className={
-                formData.tankersCount
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.tankersCount}
-                id="tankersCount"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.tankersCount
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Количество танкеров</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.tankersCount}
+                  id="tankersCount"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Количество танкеров</p>
+              </label>
 
-            <label
-              className={
-                formData.tankerPrice
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.tankerPrice}
-                id="tankerPrice"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.tankerPrice
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Стоимость танкера</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.tankerPrice}
+                  id="tankerPrice"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Стоимость танкера</p>
+              </label>
 
-            <label
-              className={
-                formData.deliverTime
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.deliverTime}
-                id="deliverTime"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.deliverTime
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Время доставки</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.deliverTime}
+                  id="deliverTime"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Время доставки</p>
+              </label>
 
-            <label
-              className={
-                formData.serviceTime
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.serviceTime}
-                id="serviceTime"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.serviceTime
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Время обслуживания клиента</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.serviceTime}
+                  id="serviceTime"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Время обслуживания клиента</p>
+              </label>
 
-            <label
-              className={
-                formData.profitPerOne
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.profitPerOne}
-                id="profitPerOne"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.profitPerOne
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Прибыль с клиента</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.profitPerOne}
+                  id="profitPerOne"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Прибыль с клиента</p>
+              </label>
 
-            <label
-              className={
-                formData.averageCheck
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.averageCheck}
-                id="averageCheck"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.averageCheck
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Средний чек</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.averageCheck}
+                  id="averageCheck"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Средний чек</p>
+              </label>
 
-            <label
-              className={
-                formData.checkIncreaseCoef
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.checkIncreaseCoef}
-                id="checkIncreaseCoef"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.checkIncreaseCoef
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Коэф увеличения среднего чека</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.checkIncreaseCoef}
+                  id="checkIncreaseCoef"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Коэф увеличения среднего чека
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.mainMaintainceCost
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.mainMaintainceCost}
-                id="mainMaintainceCost"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.mainMaintainceCost
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">
-                Базовая стоимость содержания АЗС
-              </p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.mainMaintainceCost}
+                  id="mainMaintainceCost"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Базовая стоимость содержания АЗС
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.otherMaintainceCost
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.otherMaintainceCost}
-                id="otherMaintainceCost"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.otherMaintainceCost
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Доп. стоимость содержания АЗС</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.otherMaintainceCost}
+                  id="otherMaintainceCost"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Доп. стоимость содержания АЗС
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.azsBuildTime
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.azsBuildTime}
-                id="azsBuildTime"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.azsBuildTime
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">
-                Время постройки базовой части АЗС
-              </p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.azsBuildTime}
+                  id="azsBuildTime"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Время постройки базовой части АЗС
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.placeBuildTime
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.placeBuildTime}
-                id="placeBuildTime"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.placeBuildTime
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Время постройки одного места</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.placeBuildTime}
+                  id="placeBuildTime"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Время постройки одного места</p>
+              </label>
 
-            <label
-              className={
-                formData.cashierSalary
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.cashierSalary}
-                id="cashierSalary"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.cashierSalary
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Стоимость содержания кассира</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.cashierSalary}
+                  id="cashierSalary"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">Стоимость содержания кассира</p>
+              </label>
 
-            <label
-              className={
-                formData.refuelerSalary
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.refuelerSalary}
-                id="refuelerSalary"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.refuelerSalary
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">
-                Стоимость содержания заправщика
-              </p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.refuelerSalary}
+                  id="refuelerSalary"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Стоимость содержания заправщика
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.directorSalary
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.directorSalary}
-                id="directorSalary"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.directorSalary
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Стоимость содержания директора</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.directorSalary}
+                  id="directorSalary"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Стоимость содержания директора
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.guardSalary
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.guardSalary}
-                id="guardSalary"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.guardSalary
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">Стоимость содержания охранника</p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.guardSalary}
+                  id="guardSalary"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Стоимость содержания охранника
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.newPlaceCondition
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.newPlaceCondition}
-                id="newPlaceCondition"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.newPlaceCondition
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">
-                Количество мест для добавления нового кассира
-              </p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.newPlaceCondition}
+                  id="newPlaceCondition"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Количество мест для добавления нового кассира
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.dismissalProbability
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.dismissalProbability}
-                id="dismissalProbability"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.dismissalProbability
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">
-                Вероятность увольнения сотрудника по ГПХ
-              </p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.dismissalProbability}
+                  id="dismissalProbability"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Вероятность увольнения сотрудника по ГПХ
+                </p>
+              </label>
 
-            <label
-              className={
-                formData.timeLength
-                  ? 'form__label form__label_success'
-                  : 'form__label'
-              }
-            >
-              <input
-                className="input start-page__input"
-                value={formData.timeLength}
-                id="timeLength"
-                type="text"
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    [e.target.id]: Number(e.target.value),
-                  })
+              <label
+                className={
+                  formData.timeLength
+                    ? 'form__label form__label_success'
+                    : 'form__label'
                 }
-              />
-              <p className="form__label-text">
-                Время длительности месяца (сек)
-              </p>
-            </label>
+              >
+                <input
+                  className="input start-page__input"
+                  value={formData.timeLength}
+                  id="timeLength"
+                  type="text"
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      [e.target.id]: Number(e.target.value),
+                    })
+                  }
+                />
+                <p className="form__label-text">
+                  Время длительности месяца (сек)
+                </p>
+              </label>
+            </div>
             <button className="button form__button">Старт</button>
           </form>
         </div>

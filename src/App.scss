@@ -9,8 +9,11 @@ $text-color: #eed1a0;
 }
 
 .form {
-  position: relative;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__label {
     display: flex;
@@ -29,9 +32,12 @@ $text-color: #eed1a0;
     margin: 0;
   }
 
-  &__button {
-    position: absolute;
-    bottom: -$button-height;
+  &__content {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+    gap: 15px;
   }
 }
 

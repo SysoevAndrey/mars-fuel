@@ -3,6 +3,9 @@ import Header from '../Header';
 import './MainPage.scss';
 import { useFuelContext } from '../../context';
 import data from '../../response.json';
+import Station from '../Station';
+
+const path = 'fcae65543686.ngrok.io';
 
 const MainPage = () => {
   const {
@@ -20,22 +23,27 @@ const MainPage = () => {
   } = useFuelContext();
 
   useEffect(() => {
-    const socket = new WebSocket('ws://b1ad2a4e6c49.ngrok.io');
-    socket.onopen = async function (e) {
-      await fetch('http://b1ad2a4e6c49.ngrok.io/api/state/socket');
+    const socket = new WebSocket(`ws://${process.env.REACT_APP_NGROK_URL}`);
+
+    socket.onopen = async (evt) => {
+      // await fetch(`http://${path}/api/state/socket`);
+      console.log(`[open]`);
     };
-    socket.onmessage = function (event) {
-      console.log(`[message]: ${event.data}`);
+
+    socket.onmessage = (evt) => {
+      console.log(`[message]: ${evt.data}`);
     };
-    socket.onclose = function (event) {
-      if (event.wasClean) {
-        console.log(`[close]: CODE:${event.code} MESSAGE:${event.reason}`);
+
+    socket.onclose = (evt) => {
+      if (evt.wasClean) {
+        console.log(`[close]: CODE:${evt.code} MESSAGE:${evt.reason}`);
       } else {
         console.log('[close] Соединение прервано');
       }
     };
-    socket.onerror = function (error) {
-      console.log(`[error] ${error}`);
+
+    socket.onerror = (evt) => {
+      console.log(`[error] ${JSON.stringify(evt)}`);
     };
 
     dispatch({ type: 'SET_ACTUAL_DATA', payload: data });
@@ -45,8 +53,18 @@ const MainPage = () => {
     <div className="main-page">
       <Header showTime />
       <main className="main-page__content">
-        <h1 className="main-page__title">АЗС</h1>
-        <div className="main-page__list"></div>
+        <h1 className="main-page__title">Автоматические заправочные станции</h1>
+        <div className="main-page__list">
+          {gasStations.map((station) => (
+            <Station
+              key={station.id}
+              id={station.id}
+              fuelRemained={station.fuelRemained}
+              staffCount={station.workplaces}
+              stuff={station.workers}
+            />
+          ))}
+        </div>
       </main>
     </div>
   );

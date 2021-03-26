@@ -8,7 +8,7 @@ interface IInitialState {
     fuelRemained: number;
     gasStationsCount: number;
     gasStations: {
-      id: number;
+      id: string;
       fuelRemained: number;
       workplaces: number;
       workers: {
