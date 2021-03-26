@@ -1,0 +1,99 @@
+{
+  "totalProfit": 1000000,
+  "currentMonth": "2021-05",
+  "fuelSchedule": [
+    { "month": "2021-03", "fuelVolume": 5000 },
+    { "month": "2021-04", "fuelVolume": 6000 },
+    { "month": "2021-05", "fuelVolume": 4000 }
+  ],
+  "fuelRemained": 1000,
+  "gasStationsCount": 5,
+  "gasStations": [
+    {
+      "id": 1,
+      "fuelRemained": 100,
+      "workplaces": 5,
+      "workers": [
+        {
+          "position": "cashier",
+          "salary": "20000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "cashier",
+          "salary": "20000",
+          "contractType": "GPH",
+          "hiringDate": "2021-04"
+        },
+        {
+          "position": "refueler",
+          "salary": "18000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "director",
+          "salary": "60000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "guard",
+          "salary": "25000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "fuelRemained": 200,
+      "workplaces": 7,
+      "workers": [
+        {
+          "position": "cashier",
+          "salary": "20000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "cashier",
+          "salary": "20000",
+          "contractType": "GPH",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "cashier",
+          "salary": "20000",
+          "contractType": "GPH",
+          "hiringDate": "2021-04"
+        },
+        {
+          "position": "refueler",
+          "salary": "18000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "refueler",
+          "salary": "18000",
+          "contractType": "TK",
+          "hiringDate": "2021-04"
+        },
+        {
+          "position": "director",
+          "salary": "60000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "guard",
+          "salary": "25000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        }
+      ]
+    }
+  ]
+}

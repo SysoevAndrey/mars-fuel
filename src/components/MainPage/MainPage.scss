@@ -1,0 +1,17 @@
+@import '../../App.scss';
+
+.main-page {
+  min-height: 100vh;
+  background-color: #48304b;
+  color: $text-color;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__content {
+    width: 70%;
+
+    margin-top: 20px;
+  }
+}

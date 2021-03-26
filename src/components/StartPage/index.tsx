@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../Header';
 import './StartPage.scss';
-import { useFuelContext } from '../../context';
 
 const StartPage = () => {
-  const {
-    state: { defaultParams },
-    dispatch,
-  } = useFuelContext();
-
   const [formData, setFormData] = useState({
     azsRest: 0,
     storeRest: 0,
@@ -25,7 +19,7 @@ const StartPage = () => {
     azsBuildTime: 0,
     placeBuildTime: 0,
     cashierSalary: 0,
-    refuelerSalary: '',
+    refuelerSalary: 0,
     directorSalary: 0,
     guardSalary: 0,
     newPlaceCondition: 0,
@@ -36,7 +30,25 @@ const StartPage = () => {
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    dispatch({ type: 'SET_DEFAULT_PARAMS', payload: formData });
+    const pushParams = async () => {
+      try {
+        // const response = await fetch('/api/state/init', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify(formData),
+        // });
+
+        // if (response.ok) {
+        window.location.replace('/model');
+        // }
+      } catch (err) {
+        console.log(err.response.data.error);
+      }
+    };
+
+    pushParams();
   };
 
   return (

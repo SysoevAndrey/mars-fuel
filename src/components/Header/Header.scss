@@ -1,6 +1,8 @@
 @import '../../App.scss';
 
 .header {
+  width: 100%;
+
   background-color: #0b0a18;
   color: $text-color;
   border-bottom: 2px solid $text-color;
@@ -8,13 +10,34 @@
   height: $header-height;
 
   box-sizing: border-box;
-  padding-left: 50px;
+  padding: 0 50px;
 
   display: flex;
+  justify-content: space-between;
   align-items: center;
 
   &__logo {
     font-family: 'Roboto Slab', sans;
     font-size: 36px;
+  }
+
+  &__date-info {
+    font-size: 20px;
+
+    animation: changeOpacity 2s ease-in-out infinite;
+  }
+}
+
+@keyframes changeOpacity {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 1;
   }
 }

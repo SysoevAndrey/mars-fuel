@@ -1,54 +1,34 @@
 import React, { useContext, useReducer } from 'react';
 
 interface IInitialState {
-  defaultParams: {
-    azsRest: number;
-    storeRest: number;
-    azsCount: number;
-    tankersCount: number;
-    tankerPrice: number;
-    deliverTime: number;
-    serviceTime: number;
-    profitPerOne: number;
-    averageCheck: number;
-    checkIncreaseCoef: number;
-    mainMaintainceCost: number;
-    otherMaintainceCost: number;
-    azsBuildTime: number;
-    placeBuildTime: number;
-    cashierSalary: number;
-    refuelerSalary: number;
-    directorSalary: number;
-    guardSalary: number;
-    newPlaceCondition: number;
-    dismissalProbability: number;
-    timeLength: number;
+  actualData: {
+    totalProfit: number;
+    currentMonth: string;
+    fuelSchedule: { month: string; fuelVolume: number }[];
+    fuelRemained: number;
+    gasStationsCount: number;
+    gasStations: {
+      id: number;
+      fuelRemained: number;
+      workplaces: number;
+      workers: {
+        position: string;
+        salary: string;
+        contractType: string;
+        hiringDate: string;
+      }[];
+    }[];
   };
 }
 
 const initialState: IInitialState = {
-  defaultParams: {
-    azsRest: 0,
-    storeRest: 0,
-    azsCount: 0,
-    tankersCount: 0,
-    tankerPrice: 0,
-    deliverTime: 0,
-    serviceTime: 0,
-    profitPerOne: 0,
-    averageCheck: 0,
-    checkIncreaseCoef: 0,
-    mainMaintainceCost: 0,
-    otherMaintainceCost: 0,
-    azsBuildTime: 0,
-    placeBuildTime: 0,
-    cashierSalary: 0,
-    refuelerSalary: 0,
-    directorSalary: 0,
-    guardSalary: 0,
-    newPlaceCondition: 0,
-    dismissalProbability: 0,
-    timeLength: 0,
+  actualData: {
+    totalProfit: 0,
+    currentMonth: '',
+    fuelSchedule: [],
+    fuelRemained: 0,
+    gasStationsCount: 0,
+    gasStations: [],
   },
 };
 
@@ -57,8 +37,8 @@ const reducer = (
   { type, payload }: { type: string; payload: any }
 ) => {
   switch (type) {
-    case 'SET_DEFAULT_PARAMS':
-      return { ...state, defaultParams: payload };
+    case 'SET_ACTUAL_DATA':
+      return { ...state, actualData: payload };
     default:
       return state;
   }
