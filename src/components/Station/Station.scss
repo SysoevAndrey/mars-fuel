@@ -87,7 +87,7 @@
 
     background-color: #302655;
 
-    cursor: pointer;
+    cursor: default;
 
     &_director {
       border-color: red;
@@ -106,38 +106,8 @@
     }
   }
 
-  &__staff-tooltip {
-    visibility: hidden;
-    opacity: 0;
-
-    transition: 0.4s ease-out;
-
-    top: 10px;
-    width: 90px;
-    background-color: #302655;
-    color: $text-color;
-    text-align: center;
-    font-weight: 400;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    position: absolute;
-    z-index: 1;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 100%;
-      left: 50%;
-      margin-left: -5px;
-      border-width: 5px;
-      border-style: solid;
-      border-color: transparent transparent #302655 transparent;
-    }
-  }
-
-  &__staff-category:hover > &__staff-tooltip {
-    transform: translate(0, 39px);
+  &__staff-category:hover > .tooltip {
+    transform: translate(0, 24px);
     opacity: 1;
     visibility: visible;
   }

@@ -1,6 +1,6 @@
 {
   "totalProfit": 1000000,
-  "currentMonth": "2021-05-26",
+  "currentMonthString": "27-03-2021",
   "fuelSchedule": [
     { "month": "2021-03", "fuelVolume": 5000 },
     { "month": "2021-04", "fuelVolume": 6000 },
@@ -10,10 +10,11 @@
   "gasStationsCount": 5,
   "gasStations": [
     {
-      "id": "8bb48fa",
+      "id": 1,
+      "name": "8bb48fa",
       "fuelRemained": 100,
-      "xCoordinate": -43,
-      "yCoordinate": 0,
+      "xCoordinate": -12,
+      "yCoordinate": 12,
       "workplaces": 5,
       "workers": [
         {
@@ -49,10 +50,11 @@
       ]
     },
     {
-      "id": "0d76852",
+      "id": 2,
+      "name": "0d76852",
       "fuelRemained": 200,
-      "xCoordinate": 0,
-      "yCoordinate": -43,
+      "xCoordinate": -5,
+      "yCoordinate": -24,
       "workplaces": 7,
       "workers": [
         {
@@ -84,6 +86,40 @@
           "salary": "18000",
           "contractType": "TK",
           "hiringDate": "2021-04"
+        },
+        {
+          "position": "director",
+          "salary": "60000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "guard",
+          "salary": "25000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "a3dd8a7",
+      "fuelRemained": 200,
+      "xCoordinate": 15,
+      "yCoordinate": 9,
+      "workplaces": 4,
+      "workers": [
+        {
+          "position": "cashier",
+          "salary": "20000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
+        },
+        {
+          "position": "refueler",
+          "salary": "18000",
+          "contractType": "TK",
+          "hiringDate": "2021-03"
         },
         {
           "position": "director",

@@ -1,4 +1,5 @@
 import React from 'react';
+import Tooltip from '../Tooltip';
 import './Station.scss';
 
 const Station = ({
@@ -43,19 +44,31 @@ const Station = ({
       </h4>
       <div className="station__staff-categories">
         <i className="station__staff-category station__staff-category_director">
-          <span className="station__staff-tooltip">Директор</span>
+          <Tooltip
+            position="Директор"
+            list={stuff.filter((worker) => worker.position === 'director')}
+          />
           {stuff.filter((worker) => worker.position === 'director').length}
         </i>
         <i className="station__staff-category station__staff-category_cashier">
-          <span className="station__staff-tooltip">Кассир</span>
+          <Tooltip
+            position="Кассир"
+            list={stuff.filter((worker) => worker.position === 'cashier')}
+          />
           {stuff.filter((worker) => worker.position === 'cashier').length}
         </i>
         <i className="station__staff-category station__staff-category_refueler">
-          <span className="station__staff-tooltip">Заправщик</span>
+          <Tooltip
+            position="Заправщик"
+            list={stuff.filter((worker) => worker.position === 'refueler')}
+          />
           {stuff.filter((worker) => worker.position === 'refueler').length}
         </i>
         <i className="station__staff-category station__staff-category_guard">
-          <span className="station__staff-tooltip">Охранник</span>
+          <Tooltip
+            position="Охранник"
+            list={stuff.filter((worker) => worker.position === 'guard')}
+          />
           {stuff.filter((worker) => worker.position === 'guard').length}
         </i>
       </div>

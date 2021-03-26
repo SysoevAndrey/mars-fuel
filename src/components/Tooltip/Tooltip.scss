@@ -1,0 +1,57 @@
+@import '../../App.scss';
+
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+
+  transition: 0.4s ease-out;
+
+  top: 30px;
+  width: 300px;
+  background-color: #302655;
+  color: $text-color;
+  font-weight: 400;
+  padding: 15px;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #302655 transparent;
+  }
+
+  &__title {
+    padding: 0 0 4px 0;
+    margin: 0 0 7px 0;
+    width: 29%;
+
+    font-size: 16px;
+
+    border-bottom: 1px solid $text-color;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__row {
+    width: 100%;
+
+    display: flex;
+    gap: 5px;
+  }
+
+  &__parameter {
+    margin: 0;
+  }
+}

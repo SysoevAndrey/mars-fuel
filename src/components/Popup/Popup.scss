@@ -1,0 +1,79 @@
+@import '../../App.scss';
+
+.popup {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  color: $text-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    background-color: $text-color;
+    border-radius: 16px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 24px 36px 19px;
+  }
+
+  &__close {
+    width: 40px;
+    position: absolute;
+    top: -46px;
+    right: -46px;
+    cursor: pointer;
+    transition: 0.1s linear;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  &__input {
+    height: 30px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    border: 1px solid #302655;
+    outline: none;
+    transition: .1s linear;
+    color: #302655;
+    padding-left: 10px;
+
+    &:focus {
+      border: 2px solid #302655;
+    }
+  }
+
+  &__button {
+    background-color: #48304b;
+    color: $text-color;
+    border-radius: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: .1s linear;
+    outline: none;
+
+    &:hover {
+      opacity: .9;
+    }
+
+    &:active {
+      background-color: #3c223f;
+    }
+  }
+}

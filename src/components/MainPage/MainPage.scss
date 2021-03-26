@@ -1,6 +1,8 @@
 @import '../../App.scss';
 
 .main-page {
+  position: relative;
+
   min-height: 100vh;
   background-color: #48304b;
   color: $text-color;
@@ -8,6 +10,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  &__button {
+    position: absolute;
+    top: calc(85px);
+    right: 10px;
+
+    width: 180px;
+    height: 60px;
+
+    font-size: 18px;
+  }
 
   &__title {
     margin: 40px 0;
@@ -20,7 +33,7 @@
     width: 70%;
 
     margin-top: 20px;
-    padding-bottom: 50px;
+    padding-bottom: 100px;
   }
 
   &__list {

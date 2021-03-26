@@ -2,6 +2,7 @@ import React, { useContext, useReducer } from 'react';
 
 interface IInitialState {
   testUrl: string;
+  popupIsOpened: boolean;
   fuelSchedule: { month: string; fuelVolume: number }[];
   actualData: {
     totalProfit: number;
@@ -28,11 +29,12 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
-  testUrl: '98defc97daec.ngrok.io',
+  testUrl: '2346b74f9872.ngrok.io',
+  popupIsOpened: false,
   fuelSchedule: [],
   actualData: {
     totalProfit: 0,
-    currentMonthString: '',
+    currentMonthString: '27-03-2021',
     fuelRemained: 0,
     gasStationsCount: 0,
     gasStations: [],
@@ -46,6 +48,8 @@ const reducer = (
   switch (type) {
     case 'SET_ACTUAL_DATA':
       return { ...state, actualData: payload };
+    case 'SET_POPUP_STATE':
+      return { ...state, popupIsOpened: payload };
     default:
       return state;
   }
