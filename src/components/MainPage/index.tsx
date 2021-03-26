@@ -5,15 +5,13 @@ import { useFuelContext } from '../../context';
 import data from '../../response.json';
 import Station from '../Station';
 
-const path = 'fcae65543686.ngrok.io';
-
 const MainPage = () => {
   const {
     state: {
+      testUrl,
       actualData: {
         totalProfit,
-        currentMonth,
-        fuelSchedule,
+        currentMonthString,
         fuelRemained,
         gasStationsCount,
         gasStations,
@@ -23,15 +21,26 @@ const MainPage = () => {
   } = useFuelContext();
 
   useEffect(() => {
-    const socket = new WebSocket(`ws://${process.env.REACT_APP_NGROK_URL}`);
+    // const socket = new WebSocket(`ws://${process.env.REACT_APP_NGROK_URL}`);
+    const socket = new WebSocket(`ws://${testUrl}`);
 
     socket.onopen = async (evt) => {
-      // await fetch(`http://${path}/api/state/socket`);
+      await fetch(`http://${testUrl}/api/state/init`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify([{ month: '2021-03-26', value: 1000 }]),
+      });
       console.log(`[open]`);
     };
 
     socket.onmessage = (evt) => {
-      console.log(`[message]: ${evt.data}`);
+      console.log('update');
+      dispatch({
+        type: 'SET_ACTUAL_DATA',
+        payload: JSON.parse(evt.data).Storage,
+      });
     };
 
     socket.onclose = (evt) => {
@@ -45,8 +54,6 @@ const MainPage = () => {
     socket.onerror = (evt) => {
       console.log(`[error] ${JSON.stringify(evt)}`);
     };
-
-    dispatch({ type: 'SET_ACTUAL_DATA', payload: data });
   }, []);
 
   return (
@@ -58,10 +65,11 @@ const MainPage = () => {
           {gasStations.map((station) => (
             <Station
               key={station.id}
-              id={station.id}
+              id={station.name}
               fuelRemained={station.fuelRemained}
               staffCount={station.workplaces}
               stuff={station.workers}
+              coordinates={{ x: station.xCoordinate, y: station.yCoordinate }}
             />
           ))}
         </div>

@@ -6,23 +6,31 @@ const Station = ({
   fuelRemained,
   staffCount,
   stuff,
+  coordinates: { x, y },
 }: {
   id: string;
   fuelRemained: number;
   staffCount: number;
+  coordinates: { x: number; y: number };
   stuff: {
     position: string;
-    salary: string;
+    salary: number;
     contractType: string;
     hiringDate: string;
   }[];
 }) => (
   <div className="station">
-    <img
-      className="station__planet"
-      src="https://pngimg.com/uploads/mars_planet/mars_planet_PNG23.png"
-      alt="Планета марс"
-    />
+    <div className="station__location">
+      <i
+        className="station__dot-coordinates"
+        style={{ top: 43 + x, left: 43 + y }}
+      ></i>
+      <img
+        className="station__planet"
+        src="https://pngimg.com/uploads/mars_planet/mars_planet_PNG23.png"
+        alt="Планета марс"
+      />
+    </div>
     <h2 className="station__id">
       Станция: <i>{id}</i>
     </h2>

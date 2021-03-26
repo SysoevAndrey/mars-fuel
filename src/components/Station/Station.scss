@@ -14,12 +14,27 @@
 
   transition: 0.1s linear;
 
-  &__planet {
+  &__location {
     position: absolute;
 
     top: 15px;
     right: 15px;
+  }
 
+  &__dot-coordinates {
+    position: absolute;
+
+    box-sizing: border-box;
+    border-radius: 50%;
+
+    animation: dotBlinking 1s ease-in-out infinite;
+
+    width: 3px;
+    height: 3px;
+
+  }
+
+  &__planet {
     width: 90px;
     height: 90px;
   }
@@ -72,7 +87,7 @@
 
     background-color: #302655;
 
-    cursor: default;
+    cursor: pointer;
 
     &_director {
       border-color: red;
@@ -89,15 +104,13 @@
     &_guard {
       border-color: blue;
     }
-
   }
-
 
   &__staff-tooltip {
     visibility: hidden;
     opacity: 0;
 
-    transition: .4s ease-out;
+    transition: 0.4s ease-out;
 
     top: 10px;
     width: 90px;
@@ -112,7 +125,7 @@
     z-index: 1;
 
     &::after {
-      content: " ";
+      content: '';
       position: absolute;
       bottom: 100%;
       left: 50%;
@@ -131,5 +144,19 @@
 
   &:hover {
     box-shadow: 0px 2px 3px 0px $text-color;
+  }
+}
+
+@keyframes dotBlinking {
+  0% {
+    background-color: #00c763;
+  }
+
+  50% {
+    background-color: #c4ffe1;
+  }
+
+  100% {
+    background-color: #00c763;
   }
 }

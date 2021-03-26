@@ -1,19 +1,25 @@
 import React, { useContext, useReducer } from 'react';
 
 interface IInitialState {
+  testUrl: string;
+  fuelSchedule: { month: string; fuelVolume: number }[];
   actualData: {
     totalProfit: number;
-    currentMonth: string;
-    fuelSchedule: { month: string; fuelVolume: number }[];
+    currentMonthString: string;
     fuelRemained: number;
     gasStationsCount: number;
     gasStations: {
-      id: string;
+      id: number;
+      name: string;
       fuelRemained: number;
+      xCoordinate: number;
+      yCoordinate: number;
       workplaces: number;
+      workPlacesCountForNewWorker: number;
+      workTerminationP: number;
       workers: {
         position: string;
-        salary: string;
+        salary: number;
         contractType: string;
         hiringDate: string;
       }[];
@@ -22,10 +28,11 @@ interface IInitialState {
 }
 
 const initialState: IInitialState = {
+  testUrl: '98defc97daec.ngrok.io',
+  fuelSchedule: [],
   actualData: {
     totalProfit: 0,
-    currentMonth: '',
-    fuelSchedule: [],
+    currentMonthString: '',
     fuelRemained: 0,
     gasStationsCount: 0,
     gasStations: [],

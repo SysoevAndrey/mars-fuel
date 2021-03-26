@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import Header from '../Header';
 import './StartPage.scss';
+import { useFuelContext } from '../../context';
 
 const StartPage = () => {
+  const {
+    state: { testUrl },
+  } = useFuelContext();
+
   const [formData, setFormData] = useState({
     azsRest: 0,
     storeRest: 0,
@@ -33,7 +38,8 @@ const StartPage = () => {
     const pushParams = async () => {
       try {
         const response = await fetch(
-          `http://${process.env.REACT_APP_NGROK_URL}/api/state/init`,
+          `http://${testUrl}/api/state/config`,
+          // `http://${process.env.REACT_APP_NGROK_URL}/api/state/config`,
           {
             method: 'POST',
             headers: {
@@ -76,7 +82,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   id="azsRest"
                   value={formData.azsRest}
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -98,7 +104,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.storeRest}
                   id="storeRest"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -120,7 +126,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.azsCount}
                   id="azsCount"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -142,7 +148,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.tankersCount}
                   id="tankersCount"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -164,7 +170,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.tankerPrice}
                   id="tankerPrice"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -186,7 +192,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.deliverTime}
                   id="deliverTime"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -208,7 +214,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.serviceTime}
                   id="serviceTime"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -230,7 +236,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.profitPerOne}
                   id="profitPerOne"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -252,7 +258,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.averageCheck}
                   id="averageCheck"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -274,7 +280,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.checkIncreaseCoef}
                   id="checkIncreaseCoef"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -298,7 +304,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.mainMaintainceCost}
                   id="mainMaintainceCost"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -322,7 +328,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.otherMaintainceCost}
                   id="otherMaintainceCost"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -346,7 +352,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.azsBuildTime}
                   id="azsBuildTime"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -370,7 +376,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.placeBuildTime}
                   id="placeBuildTime"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -392,7 +398,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.cashierSalary}
                   id="cashierSalary"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -414,7 +420,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.refuelerSalary}
                   id="refuelerSalary"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -438,7 +444,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.directorSalary}
                   id="directorSalary"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -462,7 +468,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.guardSalary}
                   id="guardSalary"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -486,7 +492,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.newPlaceCondition}
                   id="newPlaceCondition"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -510,7 +516,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.dismissalProbability}
                   id="dismissalProbability"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -534,7 +540,7 @@ const StartPage = () => {
                   className="input start-page__input"
                   value={formData.timeLength}
                   id="timeLength"
-                  type="text"
+                  type="number"
                   onChange={(e) =>
                     setFormData({
                       ...formData,

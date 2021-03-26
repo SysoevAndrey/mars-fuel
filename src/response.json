@@ -12,6 +12,8 @@
     {
       "id": "8bb48fa",
       "fuelRemained": 100,
+      "xCoordinate": -43,
+      "yCoordinate": 0,
       "workplaces": 5,
       "workers": [
         {
@@ -49,6 +51,8 @@
     {
       "id": "0d76852",
       "fuelRemained": 200,
+      "xCoordinate": 0,
+      "yCoordinate": -43,
       "workplaces": 7,
       "workers": [
         {
