@@ -1,0 +1,20 @@
+@import '../../App.scss';
+
+.header {
+  background-color: #0b0a18;
+  color: $text-color;
+  border-bottom: 2px solid $text-color;
+
+  height: $header-height;
+
+  box-sizing: border-box;
+  padding-left: 50px;
+
+  display: flex;
+  align-items: center;
+
+  &__logo {
+    font-family: 'Roboto Slab', sans;
+    font-size: 36px;
+  }
+}

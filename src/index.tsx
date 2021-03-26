@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { FuelProvider } from './context';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <FuelProvider>
+      <App />
+    </FuelProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

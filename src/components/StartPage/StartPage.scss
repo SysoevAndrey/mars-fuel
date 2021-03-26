@@ -1,0 +1,30 @@
+@import '../../App.scss';
+
+.start-page {
+  min-height: 100vh;
+  background-color: #48304b;
+  color: $text-color;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 20px;
+  }
+
+  &__container {
+    width: 80%;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  &__title {
+    font-size: 30px;
+  }
+}
