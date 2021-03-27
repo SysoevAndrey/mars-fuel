@@ -39,7 +39,7 @@ const Station = ({
       Станция: <i>{id}</i>
     </h2>
     <h3 className="station__fuel-count">
-      Оставшееся топливо: <i>{fuelRemained} л</i>
+      Остатки топлива: <i>{fuelRemained} л</i>
     </h3>
     <div className="station__staff">
       <h4 className="station__staff-count">
