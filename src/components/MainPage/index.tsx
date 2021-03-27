@@ -4,7 +4,6 @@ import Header from '../Header';
 import Popup from '../Popup';
 import Station from '../Station';
 import './MainPage.scss';
-import dollars from '../../images/dollars.png';
 
 const MainPage = () => {
   const {
@@ -63,50 +62,17 @@ const MainPage = () => {
     <div className="main-page">
       {popupIsOpened && <Popup />}
       <Header showTime />
-      {sum > 10000 && (
-        <>
-          <img
-            src={dollars}
-            alt="Доллоры"
-            className="main-page__money"
-            style={{
-              zIndex: 10,
-              position: 'absolute',
-              left: 0,
-              animation: 'money 3s linear infinite',
-            }}
-          />
-          <img
-            src={dollars}
-            alt="Доллоры"
-            className="main-page__money"
-            style={{
-              zIndex: 10,
-              position: 'absolute',
-              left: '32%',
-              animation: 'money 3s linear infinite',
-            }}
-          />
-          <img
-            src={dollars}
-            alt="Доллоры"
-            className="main-page__money"
-            style={{
-              zIndex: 10,
-              position: 'absolute',
-              right: 0,
-              animation: 'money 3s linear infinite',
-            }}
-          />
-        </>
-      )}
       <button
         className="button main-page__button"
         onClick={() => dispatch({ type: 'SET_POPUP_STATE', payload: true })}
       >
         Изменить объём топлива
       </button>
-      {Boolean(sum) && <p>Всего за год: {sum} $$$</p>}
+      {Boolean(sum) && (
+        <p>
+          Всего за год: <i>{sum}$</i>.
+        </p>
+      )}
       <main className="main-page__content">
         <h1 className="main-page__title">Автомобильные заправочные станции</h1>
         <div className="main-page__list">
