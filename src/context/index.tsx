@@ -2,10 +2,12 @@ import React, { useContext, useReducer } from 'react';
 
 interface IInitialState {
   testUrl: string;
+  initialDate: string;
   popupIsOpened: boolean;
   fuelSchedule: { month: string; fuelVolume: number }[];
   actualData: {
     totalProfit: number;
+    currentMonthId: number;
     currentMonthString: string;
     fuelRemained: number;
     gasStationsCount: number;
@@ -15,25 +17,31 @@ interface IInitialState {
       fuelRemained: number;
       xCoordinate: number;
       yCoordinate: number;
-      workplaces: number;
       workPlacesCountForNewWorker: number;
       workTerminationP: number;
       workers: {
-        position: string;
-        salary: number;
-        contractType: string;
-        hiringDate: string;
+        contractName: string;
+        contractType: number;
+        daysWorked: number;
+        monthCount: number;
+        worker: {
+          position: number;
+          positionName: string;
+          salary: number;
+        };
       }[];
     }[];
   };
 }
 
 const initialState: IInitialState = {
-  testUrl: '2346b74f9872.ngrok.io',
+  testUrl: '9701e1bcc3f9.ngrok.io',
+  initialDate: '2021-03-27',
   popupIsOpened: false,
   fuelSchedule: [],
   actualData: {
     totalProfit: 0,
+    currentMonthId: 0,
     currentMonthString: '27-03-2021',
     fuelRemained: 0,
     gasStationsCount: 0,

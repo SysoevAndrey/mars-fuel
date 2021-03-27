@@ -5,19 +5,22 @@ import './Station.scss';
 const Station = ({
   id,
   fuelRemained,
-  staffCount,
   stuff,
   coordinates: { x, y },
 }: {
   id: string;
   fuelRemained: number;
-  staffCount: number;
   coordinates: { x: number; y: number };
   stuff: {
-    position: string;
-    salary: number;
-    contractType: string;
-    hiringDate: string;
+    contractName: string;
+    contractType: number;
+    daysWorked: number;
+    monthCount: number;
+    worker: {
+      position: number;
+      positionName: string;
+      salary: number;
+    };
   }[];
 }) => (
   <div className="station">
@@ -40,36 +43,56 @@ const Station = ({
     </h3>
     <div className="station__staff">
       <h4 className="station__staff-count">
-        Сотрудников на станции: <i>{staffCount}</i>
+        Сотрудников на станции: <i>{stuff.length}</i>
       </h4>
       <div className="station__staff-categories">
         <i className="station__staff-category station__staff-category_director">
           <Tooltip
             position="Директор"
-            list={stuff.filter((worker) => worker.position === 'director')}
+            list={stuff.filter(
+              (worker) => worker.worker.positionName === 'director'
+            )}
           />
-          {stuff.filter((worker) => worker.position === 'director').length}
+          {
+            stuff.filter((worker) => worker.worker.positionName === 'director')
+              .length
+          }
         </i>
         <i className="station__staff-category station__staff-category_cashier">
           <Tooltip
             position="Кассир"
-            list={stuff.filter((worker) => worker.position === 'cashier')}
+            list={stuff.filter(
+              (worker) => worker.worker.positionName === 'cashier'
+            )}
           />
-          {stuff.filter((worker) => worker.position === 'cashier').length}
+          {
+            stuff.filter((worker) => worker.worker.positionName === 'cashier')
+              .length
+          }
         </i>
         <i className="station__staff-category station__staff-category_refueler">
           <Tooltip
             position="Заправщик"
-            list={stuff.filter((worker) => worker.position === 'refueler')}
+            list={stuff.filter(
+              (worker) => worker.worker.positionName === 'refueler'
+            )}
           />
-          {stuff.filter((worker) => worker.position === 'refueler').length}
+          {
+            stuff.filter((worker) => worker.worker.positionName === 'refueler')
+              .length
+          }
         </i>
         <i className="station__staff-category station__staff-category_guard">
           <Tooltip
             position="Охранник"
-            list={stuff.filter((worker) => worker.position === 'guard')}
+            list={stuff.filter(
+              (worker) => worker.worker.positionName === 'guard'
+            )}
           />
-          {stuff.filter((worker) => worker.position === 'guard').length}
+          {
+            stuff.filter((worker) => worker.worker.positionName === 'guard')
+              .length
+          }
         </i>
       </div>
     </div>

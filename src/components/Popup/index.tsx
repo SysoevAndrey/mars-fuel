@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useFuelContext } from '../../context';
 import closeIcon from '../../images/close.svg';
 import './Popup.scss';
@@ -7,10 +7,12 @@ const Popup = () => {
   const {
     state: {
       testUrl,
-      actualData: { currentMonthString },
+      actualData: { currentMonthId },
     },
     dispatch,
   } = useFuelContext();
+
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
     const escHandler = (e: any) => {
@@ -35,12 +37,15 @@ const Popup = () => {
   const changeVolume = async (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    const response = await fetch(`http://${testUrl}/api/state/init`, {
-      method: 'POST',
+    const response = await fetch(`http://${testUrl}/api/state/change-month`, {
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify([{ month: currentMonthString, value: 1000 }]),
+      body: JSON.stringify({
+        month: currentMonthId,
+        value: Number(inputValue),
+      }),
     });
 
     if (response.ok) {
@@ -59,9 +64,11 @@ const Popup = () => {
         />
         <form className="popup__form" onSubmit={(evt) => changeVolume(evt)}>
           <input
+            value={inputValue}
             type="number"
             className="popup__input"
             placeholder="Новый объем"
+            onChange={(e) => setInputValue(e.target.value)}
           />
           <button className="popup__button">Отправить</button>
         </form>

@@ -7,26 +7,36 @@ const Tooltip = ({
 }: {
   position: string;
   list: {
-    position: string;
-    salary: number;
-    contractType: string;
-    hiringDate: string;
+    contractName: string;
+    contractType: number;
+    daysWorked: number;
+    monthCount: number;
+    worker: {
+      position: number;
+      positionName: string;
+      salary: number;
+    };
   }[];
 }) => (
   <div className="tooltip">
     <h5 className="tooltip__title">{position}</h5>
     <div className="tooltip__list">
-      {list.map(({ salary, contractType, hiringDate }, index: number) => (
-        <div className="tooltip__row" key={contractType + index}>
-          <p className="tooltip__parameter">
-            Начало работы: <i>{hiringDate}</i>
-          </p>
-          <p className="tooltip__parameter">
-            ЗП: <i>{salary}</i>
-          </p>
-          <p className="tooltip__parameter">{contractType}</p>
-        </div>
-      ))}
+      {list.map(
+        (
+          { contractType, daysWorked, contractName, worker: { salary } },
+          index: number
+        ) => (
+          <div className="tooltip__row" key={contractType + index}>
+            <p className="tooltip__parameter">
+              Трудоустройство: <i>{daysWorked} дней назад</i>
+            </p>
+            <p className="tooltip__parameter">
+              ЗП: <i>{salary}</i>
+            </p>
+            <p className="tooltip__parameter">{contractName}</p>
+          </div>
+        )
+      )}
     </div>
   </div>
 );

@@ -15,7 +15,6 @@
       "fuelRemained": 100,
       "xCoordinate": -12,
       "yCoordinate": 12,
-      "workplaces": 5,
       "workers": [
         {
           "position": "cashier",
@@ -55,7 +54,6 @@
       "fuelRemained": 200,
       "xCoordinate": -5,
       "yCoordinate": -24,
-      "workplaces": 7,
       "workers": [
         {
           "position": "cashier",
